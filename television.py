@@ -23,9 +23,10 @@ class Television:
             if not self.__muted:
                 self.__volume_before_mute = self.__volume
                 self.__volume = self.MIN_VOLUME
+                self.__muted = True
             else:
                 self.__volume = self.__volume_before_mute
-            self.__muted = not self.__muted
+                self.__muted = False
 
     def channel_up(self) -> None:
         """Increase the current channel by 1, considering the maximum channel."""
@@ -36,8 +37,6 @@ class Television:
         """Decrease the current channel by 1, considering the minimum and maximum channel."""
         if self.__status:
             self.__channel = (self.__channel - 1) % (self.MAX_CHANNEL + 1)
-            if self.__channel < self.MIN_CHANNEL:
-                self.__channel = self.MAX_CHANNEL
 
     def volume_up(self) -> None:
         """Increase the volume by 1 if the television is on and not muted."""
